@@ -11,9 +11,14 @@
 
 #define GPIO_BASE_DIR       ((uint32_t)0x3FF44004)
 #define GPIO_OUT_DIR        (GPIO_BASE_DIR)
+#define GPIO_OUT_W1TS_DIR   (GPIO_BASE_DIR + 0x0004)
+#define GPIO_OUT_W1TC_DIR   (GPIO_BASE_DIR + 0x0008)
 #define GPIO_OUT_1_DIR      (GPIO_BASE_DIR + 0x000C)
+#define GPIO_OUT_1_W1TS_DIR (GPIO_BASE_DIR + 0x0010)
+#define GPIO_OUT_1_W1TC_DIR (GPIO_BASE_DIR + 0x0014)
 #define GPIO_ENABLE_DIR     (GPIO_BASE_DIR + 0x001C)
 #define GPIO_ENABLE_1_DIR   (GPIO_BASE_DIR + 0x0028)
+
 #define GPIO_STRAP_DIR      (GPIO_BASE_DIR + 0x0034)
 #define GPIO_IN_DIR         (GPIO_BASE_DIR + 0x0038)
 #define GPIO_INT_DIR        (GPIO_BASE_DIR + 0x0040)
@@ -23,10 +28,17 @@
 #define GPIO_FUNC_OUT_DIR   (GPIO_BASE_DIR + 0x052C)
 
 
-#define GPIO_OUT            ((GPIO_GENERIC_O*) GPIO_OUT_DIR)
+#define GPIO_OUT            ((GPIO_GENERIC_O_0*) GPIO_OUT_DIR)
+#define GPIO_OUT_W1TS       ((GPIO_GENERIC_O_0*) GPIO_OUT_W1TS_DIR)
+#define GPIO_OUT_W1TC       ((GPIO_GENERIC_O_0*) GPIO_OUT_W1TC_DIR)
 #define GPIO_OUT_1          ((GPIO_GENERIC_O_1*) GPIO_OUT_1_DIR)
-#define GPIO_ENABLE         ((GPIO_GENERIC_O*)  GPIO_ENABLE_DIR)
+#define GPIO_OUT_1_W1TS     ((GPIO_GENERIC_O_0*) GPIO_OUT_1_W1TS_DIR)
+#define GPIO_OUT_1_W1TC     ((GPIO_GENERIC_O_0*) GPIO_OUT_1_W1TC_DIR)
+
+
+#define GPIO_ENABLE         ((GPIO_GENERIC_O_0*) GPIO_ENABLE_DIR)
 #define GPIO_ENABLE_1       ((GPIO_GENERIC_O_1*) GPIO_ENABLE_1_DIR)
+
 #define GPIO_STRAP_R        ((GPIO_STRAP*) GPIO_STRAP_DIR)
 #define GPIO_IN             ((GPIO_GENERIC_I*) GPIO_IN_DIR)
 #define GPIO_INT            ((GPIO_INT_STAT *) GPIO_INT_DIR)
@@ -36,23 +48,31 @@
 #define GPIO_FUNC_OUT(X)    ((GPIO_FUNC_OUT_SEL_CFG_REG*) (GPIO_FUNC_IN_DIR + (4*X)))
 
 
+
+/*typedef union gpio_matrix
+{
+    uint32_t reg;
+    struct gpio_matrix
+    {
+        _IO uint32_t    REG_0_31;
+        _O  uint32_t    REG_0_31_OUTSET;
+        _O  uint32_t    REG_0_31_CLEARSET;
+    };
+    
+}GPIO_GENERIC_0;*/
+
+
 //ESTRUCTURAS
 //OUT, ENABLE
 typedef struct 
 {   
-    _IO uint32_t    REG_0_31;
-    _O  uint32_t    REG_0_31_OUTSET;
-    _O  uint32_t    REG_0_31_CLEARSET;
-} GPIO_GENERIC_O;
+    _IO uint32_t    REG_IO;
+}GPIO_GENERIC_O_0;
 
 typedef struct
-{
-    _IO uint8_t     REG_32_39;
-        uint16_t    RESERVED1;
-    _O  uint8_t     REG_32_39_OUTSET;
-        uint16_t    RESERVED2;
-    _O  uint8_t     REG_32_39_CLEARSET;
-        uint16_t    RESERVED3;
+{;
+    _IO uint32_t    REG_IO :7;
+        uint32_t    RESERVED:24;
 } GPIO_GENERIC_O_1;
 
 //STRAPPING

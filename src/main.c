@@ -14,12 +14,9 @@ void app_main(void)
 
     // Set the mode for GPIO5 to output
     *gpio_enable_reg = (1 << GPIO5);
-    GPIO_ENABLE -> REG_0_31    =  (1<<4);
-
+    GPIO_ENABLE -> REG_IO |= (1 << 2);
     
     // Set the level for GPIO5 to HIGH
     *gpio_out_w1ts_reg = (1 << GPIO5);
-
-    GPIO_OUT ->REG_0_31_OUTSET = (1<<4);
-
+    GPIO_OUT_W1TS   -> REG_IO |= (1 << 2);
 }
