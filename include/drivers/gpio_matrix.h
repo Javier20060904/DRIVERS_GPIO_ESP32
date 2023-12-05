@@ -7,8 +7,9 @@
 #define _O volatile //Solo escritura (WO)
 #define _IO volatile //Escritura y lectura (R/W)
 
-#define PERIFERAL           ((uint32_t) 0x3FF00000)
-#define GPIO_BASE_DIR       (PERIFERAL + 0x00044004)
+#define PERIFERAL_BASE          ((uint32_t) 0x3FF00000)
+
+#define GPIO_BASE_DIR       ((uint32_t)0x3FF44004)
 #define GPIO_OUT_DIR        (GPIO_BASE_DIR)
 #define GPIO_OUT_1_DIR      (GPIO_BASE_DIR + 0x000C)
 #define GPIO_ENABLE_DIR     (GPIO_BASE_DIR + 0x001C)
@@ -24,7 +25,7 @@
 
 #define GPIO_OUT            ((GPIO_GENERIC_O*) GPIO_OUT_DIR)
 #define GPIO_OUT_1          ((GPIO_GENERIC_O_1*) GPIO_OUT_1_DIR)
-#define GPIO_ENABLE         ((GPIO_GENERIC_O*)  GPIO_BASE_DIR)
+#define GPIO_ENABLE         ((GPIO_GENERIC_O*)  GPIO_ENABLE_DIR)
 #define GPIO_ENABLE_1       ((GPIO_GENERIC_O_1*) GPIO_ENABLE_1_DIR)
 #define GPIO_STRAP_R        ((GPIO_STRAP*) GPIO_STRAP_DIR)
 #define GPIO_IN             ((GPIO_GENERIC_I*) GPIO_IN_DIR)
@@ -47,13 +48,12 @@ typedef struct
 typedef struct
 {
     _IO uint8_t     REG_32_39;
-    uint16_t    RESERVED1;
+        uint16_t    RESERVED1;
     _O  uint8_t     REG_32_39_OUTSET;
-    uint16_t    RESERVED2;
+        uint16_t    RESERVED2;
     _O  uint8_t     REG_32_39_CLEARSET;
-    uint16_t    RESERVED3;
+        uint16_t    RESERVED3;
 } GPIO_GENERIC_O_1;
-
 
 //STRAPPING
 typedef struct

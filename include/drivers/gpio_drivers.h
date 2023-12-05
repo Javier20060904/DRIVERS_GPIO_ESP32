@@ -1,10 +1,16 @@
 #ifndef GPIO_DRIVER_H
 #define GPIO_DRIVER_H
 
-#include "gpio_matrix.h" 
+#include "gpio_matrix.h"
+#include <stdbool.h>
 
+#define IN  0
+#define OUT 1
 
-extern void     GPIO_SET_PORT();
+#define OFF 0
+#define ON 1
+
+extern void     GPIO_SET_OUT_PORT(uint8_t port, bool value);
 extern uint32_t GPIO_READ_PORT();
 extern void     GPIO_SET_INTERRUPTION();
 #endif
