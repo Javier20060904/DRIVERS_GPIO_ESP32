@@ -13,10 +13,10 @@ void app_main(void)
     volatile uint32_t* gpio_enable_reg = (volatile uint32_t*) GPIO_ENABLE_REG;
 
     // Set the mode for GPIO5 to output
-    *gpio_enable_reg = (1 << GPIO5);
-    GPIO_ENABLE -> REG_IO |= (1 << 2);
+    *gpio_enable_reg |= (1 << GPIO5);
+    GPIO_ENABLE -> REG_IO |= (1 << 4);
     
     // Set the level for GPIO5 to HIGH
-    *gpio_out_w1ts_reg = (1 << GPIO5);
-    GPIO_OUT_W1TS   -> REG_IO |= (1 << 2);
+    *gpio_out_w1ts_reg |= (1 << GPIO5);
+    GPIO_OUT_W1TS   -> REG_IO |= (1 << 4);
 }
