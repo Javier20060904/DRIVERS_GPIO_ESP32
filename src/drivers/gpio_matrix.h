@@ -72,6 +72,11 @@
 #define IO38 38
 #define IO39 39
 
+#define LED4 IO2
+#define LED3 IO4
+#define LED2 IO16
+#define LED1 IO17
+
 
 /**
  * Direcciones de registros
@@ -90,6 +95,7 @@
 
 #define GPIO_STRAP_DIR      (GPIO_BASE_DIR + 0x0034)
 #define GPIO_IN_DIR         (GPIO_BASE_DIR + 0x0038)
+#define GPIO_IN_1_DIR       (GPIO_BASE_DIR + 0x003C)
 #define GPIO_INT_DIR        (GPIO_BASE_DIR + 0x0040)
 #define GPIO_AC_PC_CPU_DIR  (GPIO_BASE_DIR + 0x005C)
 #define GPIO_PIN_DIR        (GPIO_BASE_DIR + 0x0084)
@@ -104,11 +110,13 @@
 #define GPIO_OUT_1_W1TS     ((GPIO_GENERIC_O_0*) GPIO_OUT_1_W1TS_DIR)
 #define GPIO_OUT_1_W1TC     ((GPIO_GENERIC_O_0*) GPIO_OUT_1_W1TC_DIR)
 
+#define GPIO_IN             ((GPIO_GENERIC_I_0*) GPIO_IN_DIR)
+#define GPIO_IN_1           ((GPIO_GENERIC_I_1*) GPIO_IN_1_DIR)
+
 #define GPIO_ENABLE         ((GPIO_GENERIC_O_0*) GPIO_ENABLE_DIR)
 #define GPIO_ENABLE_1       ((GPIO_GENERIC_O_1*) GPIO_ENABLE_1_DIR)
 
 #define GPIO_STRAP_R        ((GPIO_STRAP*) GPIO_STRAP_DIR)
-#define GPIO_IN             ((GPIO_GENERIC_I*) GPIO_IN_DIR)
 #define GPIO_INT            ((GPIO_INT_STAT *) GPIO_INT_DIR)
 #define GPIO_AC_PC_CPU      ((GPIO_PU *) GPIO_AC_PC_CPU_DIR)
 
@@ -142,6 +150,20 @@ typedef struct
         uint32_t    RESERVED:24;
 } GPIO_GENERIC_O_1;
 
+
+//INPUT
+typedef struct 
+{   
+    _I  uint32_t    REG_IO;
+} GPIO_GENERIC_I_0;
+
+typedef struct 
+{   
+    _IO uint32_t    REG_IO      :7;
+        uint32_t    RESERVED    :24;
+} GPIO_GENERIC_I_1;
+
+
 //STRAPPING
 typedef struct
 {
@@ -149,13 +171,6 @@ typedef struct
     uint16_t RESERVED1;
 }GPIO_STRAP;
 
-//INPUT
-typedef struct 
-{   
-    _I  uint32_t    REG_0_31;
-    _I  uint8_t     REG_32_39;
-    uint16_t    RESERVED1;
-} GPIO_GENERIC_I;
 
 //Interrupt
 typedef struct

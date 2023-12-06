@@ -19,7 +19,7 @@
 * Includes
 *******************************************************************************/
 #include "gpio_matrix.h"
-#include <stdbool.h>
+#include <stdbool.h> //Uso del tipo de dato bool
 
 /******************************************************************************
 * Constantes del preprocesador
@@ -35,6 +35,6 @@
 *******************************************************************************/
 extern void     GPIO_PORT_SET_OUT(uint8_t port, bool value);
 extern void     GPIO_PORT_ENABLE(uint8_t port);
-extern uint32_t GPIO_READ_PORT();
+extern bool     GPIO_PORT_READ(uint8_t port);
 extern void     GPIO_SET_INTERRUPTION();
 #endif
