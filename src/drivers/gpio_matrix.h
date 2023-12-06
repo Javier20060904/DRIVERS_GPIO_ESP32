@@ -48,18 +48,48 @@
 #define GPIO_FUNC_OUT(X)    ((GPIO_FUNC_OUT_SEL_CFG_REG*) (GPIO_FUNC_IN_DIR + (4*X)))
 
 
+#define IO0 0
+#define IO1 1
+#define IO2 2
+#define IO3 3
+#define IO4 4
+#define IO5 5
+#define IO6 6
+#define IO7 7
+#define IO8 8
+#define IO9 9
+#define IO10 10
+#define IO11 11
+#define IO12 12
+#define IO13 13
+#define IO14 14
+#define IO15 15
+#define IO16 16
+#define IO17 17
+#define IO18 18
+#define IO19 19
+#define IO20 20
+#define IO21 21
+#define IO22 22
+#define IO23 23
+#define IO24 24
+#define IO25 25
+#define IO26 26
+#define IO27 27
+#define IO28 28
+#define IO29 29
+#define IO30 30
+#define IO31 31
+#define IO32 32
+#define IO33 33
+#define IO34 34
+#define IO35 35
+#define IO36 36
+#define IO37 37
+#define IO38 38
+#define IO39 39
 
-/*typedef union gpio_matrix
-{
-    uint32_t reg;
-    struct gpio_matrix
-    {
-        _IO uint32_t    REG_0_31;
-        _O  uint32_t    REG_0_31_OUTSET;
-        _O  uint32_t    REG_0_31_CLEARSET;
-    };
-    
-}GPIO_GENERIC_0;*/
+
 
 
 //ESTRUCTURAS

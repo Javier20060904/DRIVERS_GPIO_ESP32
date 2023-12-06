@@ -1,6 +1,6 @@
 #include "gpio_drivers.h"
 
-void GPIO_SET_OUT_PORT(uint8_t port, bool value){
+void GPIO_PORT_SET_OUT(uint8_t port, bool value){
     switch (value)
     {
         case ON: 
