@@ -12,5 +12,4 @@ void app_main(void)
     GPIO_PORT_SET_OUT(IO4, ON);
     GPIO_PORT_SET_OUT(IO17, ON);
     GPIO_PORT_SET_OUT(IO16, ON);
-
 }
