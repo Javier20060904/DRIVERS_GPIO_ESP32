@@ -33,8 +33,11 @@
 /******************************************************************************
 * Prototipo de funciones
 *******************************************************************************/
-extern void     GPIO_PORT_SET_OUT(uint8_t port, bool value);
-extern void     GPIO_PORT_ENABLE(uint8_t port);
-extern bool     GPIO_PORT_READ(uint8_t port);
-extern void     GPIO_SET_INTERRUPTION();
+extern void     GPIO_OUTPUT_ENABLE(uint8_t port);
+extern void     GPIO_OUTPUT_DISABLE(uint8_t port);
+extern void     GPIO_OUTPUT_SET(uint8_t port, bool value);
+extern void     GPIO_INPUT_ENABLE(uint8_t port);
+extern void     GPIO_INPUT_DISABLE(uint8_t port);
+extern bool     GPIO_INPUT_READ(uint8_t port);
+extern void     GPIO_INTERRUPTION_SET(uint8_t port);
 #endif
