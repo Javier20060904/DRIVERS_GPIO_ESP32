@@ -48,6 +48,13 @@ void GPIO_INPUT_ENABLE(uint8_t port){
     return;
 }
 
+/*! 
+* Funcion: GPIO_INPUT_READ
+* Pre-condiciones: Ninguna
+* Descripcion: Lee el puerto seleccionado
+* Valores de entrada: Puerto
+* Valores de salida: Valor de la lectura
+*/  
 bool GPIO_INPUT_READ(uint8_t port){
     bool lecture;
     if (port > IO31 && port <= IO39){
