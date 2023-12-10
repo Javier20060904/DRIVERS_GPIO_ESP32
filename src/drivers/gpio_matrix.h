@@ -8,7 +8,7 @@
 * Target                :   ESP32
 *
 ******************************************************************************/
-/** @file gpio_matrix.h
+/** @file gpioX_matrix.h
  *  @brief Declaraciones de registros
  */
 #ifndef GPIO_MATRIX_H

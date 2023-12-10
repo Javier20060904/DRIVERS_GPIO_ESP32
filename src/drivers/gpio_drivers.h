@@ -28,6 +28,8 @@
 #define OUT 1
 #define OFF IN
 #define ON OUT
+#define PULLUP OFF;
+#define PULLDOWN ON;
 
 
 /******************************************************************************
@@ -36,7 +38,7 @@
 extern void     GPIO_OUTPUT_ENABLE(uint8_t port);
 extern void     GPIO_OUTPUT_DISABLE(uint8_t port);
 extern void     GPIO_OUTPUT_SET(uint8_t port, bool value);
-extern void     GPIO_INPUT_ENABLE(uint8_t port);
+extern void     GPIO_INPUT_ENABLE(uint8_t port, bool resistor);
 extern void     GPIO_INPUT_DISABLE(uint8_t port);
 extern bool     GPIO_INPUT_READ(uint8_t port);
 extern void     GPIO_INTERRUPTION_SET(uint8_t port);
