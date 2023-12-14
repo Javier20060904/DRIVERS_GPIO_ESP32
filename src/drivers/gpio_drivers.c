@@ -67,7 +67,7 @@ void GPIO_INPUT_ENABLE(uint8_t port, bool resistor){
     port_selected.reg = ioMuxDirections[port]; //Seleccion del puerto
     port_selected.confirguration.FUN_IE = 1; //Habilitacion de la entrada
     port_selected.confirguration.FUN_WPU = !resistor; //Habilitacion del pullup
-    port_selected.confirguration.FUN_WPU = resistor; //Habilitacion del pulldown
+    port_selected.confirguration.FUN_WPD = resistor; //Habilitacion del pulldown
     return;
 }
 
