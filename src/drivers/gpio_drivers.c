@@ -31,12 +31,12 @@ void GPIO_OUTPUT_SET(uint8_t port, bool value){
     switch (value)
     {
         case ON: 
-            GPIO_OUT_W1TS   -> REG_IO |= (value << port) * !(port > IO31 && port <= IO33);
-            GPIO_OUT_1_W1TS -> REG_IO |= (value << (port- IO32)) * (port > IO31 && port <= IO33);
+            GPIO_OUT_W1TS   -> REG_IO = (1 << port) * !(port > IO31 && port <= IO33);
+            GPIO_OUT_1_W1TS -> REG_IO = (1 << (port - IO32)) * (port > IO31 && port <= IO33);
             break;
         case OFF:
-            GPIO_OUT_W1TC   -> REG_IO |= (value << port) * !(port > IO31 && port <= IO33);
-            GPIO_OUT_1_W1TC -> REG_IO |= (value << (port- IO32)) * (port > IO31 && port <= IO33);
+            GPIO_OUT_W1TC   -> REG_IO = (1 << port) * !(port > IO31 && port <= IO33);
+            GPIO_OUT_1_W1TC -> REG_IO = (1 << (port - IO32)) * (port > IO31 && port <= IO33);
             break;
     }
     return;
@@ -50,9 +50,11 @@ void GPIO_OUTPUT_SET(uint8_t port, bool value){
 * Valores de salida: Ninguno
 */  
 void GPIO_OUTPUT_ENABLE(uint8_t port){
-    GPIO_FUNC_OUT_SEL(port) -> REG |= 0x100;
-    GPIO_ENABLE -> REG_IO   |= (1 << port) * !(port > IO31 && port <= IO39);
-    GPIO_ENABLE_1 -> REG_IO |= (1 << (port - IO32)) * (port > IO31 && port <= IO39);
+    IO_MUX port_selected;
+    port_selected.reg = (uint32_t *) ioMuxDirections[port]; //Seleccion del puerto
+    port_selected.confirguration.MCU_SEL = 0x02;
+    GPIO_ENABLE -> REG_IO   = (1 << port) * !(port > IO31 && port <= IO39);
+    GPIO_ENABLE_1 -> REG_IO = (1 << (port - IO32)) * (port > IO31 && port <= IO39);
     return;
 }
 
