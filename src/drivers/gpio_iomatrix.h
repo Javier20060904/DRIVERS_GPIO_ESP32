@@ -1,8 +1,24 @@
+/*******************************************************************************
+* Title                 :   gpio matrix  
+* Filename              :   gpio_matrix.h
+* Author                :   Javier Perez Macias, Marco Antonio Calderón Macías, Alejandro Morales Holguín
+* Origin Date           :   04/12/2023
+* Version               :   1.0.0
+* Compiler              :   CMAKE
+* Target                :   ESP32
+*
+******************************************************************************/
+/** @file gpio_iomatrix.h
+ *  @brief Declaraciones de registros de IOMUX
+ */
 #ifndef GPIO_IOMATRIX_H
 #define GPIO_IOMATRIX_H
 
 #include <stdint.h>
 
+/******************************************************************************
+* Constantes del preprocesador
+*******************************************************************************/
 /**
  * Tipo de registro
  */
@@ -10,6 +26,9 @@
 #define _IO volatile //Escritura y lectura (R/W)
 #define _O _IO //Solo escritura (WO)
 
+/**
+ * Direcciones de registros
+ */
 #define IO_MUX_GPIO0_REG    (0x3FF49044)
 #define IO_MUX_GPIO2_REG    (0x3FF49040)
 #define IO_MUX_GPIO4_REG    (0x3FF49048)
@@ -34,18 +53,25 @@
 #define IO_MUX_GPIO37_REG   (0x3FF49008)
 #define IO_MUX_GPIO38_REG   (0x3FF4900C)
 
+/******************************************************************************
+* Variables
+*******************************************************************************/
 const uint32_t ioMuxDirections[] = {
-IO_MUX_GPIO0_REG, 0x00, IO_MUX_GPIO2_REG, 0x00, 
-IO_MUX_GPIO4_REG, IO_MUX_GPIO5_REG, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 
-0x00, 0x00, 0x00, 0x00, 
-IO_MUX_GPIO16_REG, IO_MUX_GPIO17_REG, IO_MUX_GPIO18_REG, IO_MUX_GPIO19_REG, 
-IO_MUX_GPIO20_REG, IO_MUX_GPIO21_REG, IO_MUX_GPIO22_REG, IO_MUX_GPIO23_REG,
-IO_MUX_GPIO24_REG, IO_MUX_GPIO25_REG, IO_MUX_GPIO26_REG, IO_MUX_GPIO27_REG,
-0x00, 0x00, 0x00, 0x00,
-IO_MUX_GPIO32_REG, IO_MUX_GPIO33_REG, IO_MUX_GPIO34_REG, IO_MUX_GPIO35_REG,
-IO_MUX_GPIO36_REG, IO_MUX_GPIO37_REG, IO_MUX_GPIO38_REG, 0x00};
+    IO_MUX_GPIO0_REG, 0x00, IO_MUX_GPIO2_REG, 0x00, 
+    IO_MUX_GPIO4_REG, IO_MUX_GPIO5_REG, 0x00, 0x00, 
+    0x00, 0x00, 0x00, 0x00, 
+    0x00, 0x00, 0x00, 0x00, 
+    IO_MUX_GPIO16_REG, IO_MUX_GPIO17_REG, IO_MUX_GPIO18_REG, IO_MUX_GPIO19_REG, 
+    IO_MUX_GPIO20_REG, IO_MUX_GPIO21_REG, IO_MUX_GPIO22_REG, IO_MUX_GPIO23_REG,
+    IO_MUX_GPIO24_REG, IO_MUX_GPIO25_REG, IO_MUX_GPIO26_REG, IO_MUX_GPIO27_REG,
+    0x00, 0x00, 0x00, 0x00,
+    IO_MUX_GPIO32_REG, IO_MUX_GPIO33_REG, IO_MUX_GPIO34_REG, IO_MUX_GPIO35_REG,
+    IO_MUX_GPIO36_REG, IO_MUX_GPIO37_REG, IO_MUX_GPIO38_REG, 0x00
+};
 
+/******************************************************************************
+* Typedefs
+*******************************************************************************/
 typedef union 
 {
     uint32_t reg;
@@ -68,4 +94,6 @@ typedef union
 }IO_MUX;
 
 
-#endif
+#endif /*gpio_iomatrix*/
+
+/*************** FIN DEL ARCHIVO ***************************************************************************/

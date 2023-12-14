@@ -1,7 +1,7 @@
 /*******************************************************************************
 * Title                 :   gpio drivers  
 * Filename              :   gpio_drivers.h
-* Author                :   Javier Perez Macias
+* Author                :   Javier Perez Macias, Marco Antonio Calderón Macías, Alejandro Morales Holguín
 * Origin Date           :   04/12/2023
 * Version               :   1.0.0
 * Compiler              :   CMAKE
@@ -43,3 +43,4 @@ extern void     GPIO_INPUT_DISABLE(uint8_t port);
 extern bool     GPIO_INPUT_READ(uint8_t port);
 extern void     GPIO_INTERRUPTION_SET(uint8_t port);
 #endif
+/*************** FIN DEL ARCHIVO ***************************************************************************/
