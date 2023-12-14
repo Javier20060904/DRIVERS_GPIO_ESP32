@@ -27,7 +27,6 @@
 #define _IO volatile //Escritura y lectura (R/W)
 #define _O _IO //Solo escritura (WO)
 
-
 /**
  * Puertos
  */
@@ -77,22 +76,39 @@
 #define LED2 IO16
 #define LED1 IO17
 
+/**
+ * Interrupciones parametros
+ */
+#define APP_CPU     0x01
+#define APP_CPU_N   0x02
+#define PRO_CPU     0x04
+#define PRO_CPU_N   0x08
+
+#define DISABLE         0x00
+#define RISING_EDGE     0x01
+#define FALLING_EDGE    0x02
+#define ANY_EDGE        0x03
+#define LOW_LEVEL       0x04
+#define HIGH_LEVEL      0x05
+
 
 /**
  * Direcciones de registros
  */
 #define PERIFERAL_BASE          ((uint32_t) 0x3FF00000)
-#define GPIO_BASE_DIR       ((uint32_t)0x3FF44004)
-#define GPIO_OUT_DIR        (GPIO_BASE_DIR)
-#define GPIO_OUT_W1TS_DIR   (GPIO_BASE_DIR + 0x0004)
-#define GPIO_OUT_W1TC_DIR   (GPIO_BASE_DIR + 0x0008)
-#define GPIO_OUT_1_DIR      (GPIO_BASE_DIR + 0x000C)
-#define GPIO_OUT_1_W1TS_DIR (GPIO_BASE_DIR + 0x0010)
-#define GPIO_OUT_1_W1TC_DIR (GPIO_BASE_DIR + 0x0014)
-#define GPIO_ENABLE_DIR     (GPIO_BASE_DIR + 0x001C)
-#define GPIO_ENABLE_1_DIR   (GPIO_BASE_DIR + 0x0028)
+#define GPIO_BASE_DIR           ((uint32_t)0x3FF44004)
+#define GPIO_OUT_DIR            (GPIO_BASE_DIR)
+#define GPIO_OUT_W1TS_DIR       (GPIO_BASE_DIR + 0x0004)
+#define GPIO_OUT_W1TC_DIR       (GPIO_BASE_DIR + 0x0008)
+#define GPIO_OUT_1_DIR          (GPIO_BASE_DIR + 0x000C)
+#define GPIO_OUT_1_W1TS_DIR     (GPIO_BASE_DIR + 0x0010)
+#define GPIO_OUT_1_W1TC_DIR     (GPIO_BASE_DIR + 0x0014)
+#define GPIO_ENABLE_DIR         (GPIO_BASE_DIR + 0x001C)
+#define GPIO_ENABLE_1_DIR       (GPIO_BASE_DIR + 0x0028)
 #define GPIO_IN_DIR             (GPIO_BASE_DIR + 0x0038)
 #define GPIO_IN_1_DIR           (GPIO_BASE_DIR + 0x003C)
+#define GPIO_PIN_DIR            (GPIO_BASE_DIR + 0x0084)
+
 
 /**
  * Punteros a los registros
@@ -107,6 +123,13 @@
 #define GPIO_IN_1           ((GPIO_GENERIC_I_1*) GPIO_IN_1_DIR)
 #define GPIO_ENABLE         ((GPIO_GENERIC_O_0*) GPIO_ENABLE_DIR)
 #define GPIO_ENABLE_1       ((GPIO_GENERIC_O_1*) GPIO_ENABLE_1_DIR)
+
+
+/******************************************************************************
+* Macros
+*******************************************************************************/
+#define GPIO_PIN(X)         (GPIO_PIN_DIR + (4*X))
+
 
 /******************************************************************************
 * Typedefs
@@ -145,6 +168,26 @@ typedef struct
     _I uint32_t    REG_IO      :7;
        uint32_t    RESERVED    :24;
 } GPIO_GENERIC_I_1;
+
+/**
+ * Declaracion generica
+*/
+typedef union 
+{
+    uint32_t reg;
+    struct
+    {
+        uint32_t RESERVED1 :2;
+        _IO uint32_t PAD_DRIVER :1;
+        uint32_t RESERVED2 :4;
+        _IO uint32_t INT_TYPE :3;
+        _IO uint32_t WAKEUP_ENABLE :1;
+        uint32_t RESERVED3 :2;
+        _IO uint32_t INT_ENA :5;
+        uint32_t RESERVED4 :13;
+    }campo;
+} GPIO_PIN_GENERIC;
+
 
 #endif
 /*************** FIN DEL ARCHIVO ***************************************************************************/

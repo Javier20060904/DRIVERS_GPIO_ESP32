@@ -41,6 +41,6 @@ extern void     GPIO_OUTPUT_SET(uint8_t port, bool value);
 extern void     GPIO_INPUT_ENABLE(uint8_t port, bool resistor);
 extern void     GPIO_INPUT_DISABLE(uint8_t port);
 extern bool     GPIO_INPUT_READ(uint8_t port);
-extern void     GPIO_INTERRUPTION_SET(uint8_t port);
+extern void     GPIO_INTERRUPTION_SET(uint8_t port, uint8_t int_type, uint8_t signal_type);
 #endif
 /*************** FIN DEL ARCHIVO ***************************************************************************/

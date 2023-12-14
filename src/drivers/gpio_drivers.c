@@ -45,7 +45,7 @@ void GPIO_OUTPUT_SET(uint8_t port, bool value){
 /*! 
 * Funcion: GPIO_OUTPUT_ENABLE
 * Pre-condiciones: Ninguna
-* Descripcion: Habilita el puerto seleccionado
+* Descripcion: Habilita la salida del puerto seleccionado
 * Valores de entrada: Puerto
 * Valores de salida: Ninguno
 */  
@@ -58,7 +58,7 @@ void GPIO_OUTPUT_ENABLE(uint8_t port){
 /*! 
 * Funcion: GPIO_INPUT_ENABLE
 * Pre-condiciones: Ninguna
-* Descripcion: Lee el puerto seleccionado
+* Descripcion: Habilita la entrada del puerto seleccionado
 * Valores de entrada: Puerto, tipo de resitencia
 * Valores de salida: Ninguno
 */  
@@ -68,6 +68,22 @@ void GPIO_INPUT_ENABLE(uint8_t port, bool resistor){
     port_selected.confirguration.FUN_IE = 1; //Habilitacion de la entrada
     port_selected.confirguration.FUN_WPU = !resistor; //Habilitacion del pullup
     port_selected.confirguration.FUN_WPD = resistor; //Habilitacion del pulldown
+    return;
+}
+
+/*! 
+* Funcion: GPIO_INPUT_DISABLE
+* Pre-condiciones: Ninguna
+* Descripcion: Deshabilita el puerto seleccionado
+* Valores de entrada: Puerto
+* Valores de salida: Ninguno
+*/  
+void GPIO_INPUT_DISABLE(uint8_t port){
+    IO_MUX port_selected;
+    port_selected.reg = ioMuxDirections[port]; //Seleccion del puerto
+    port_selected.confirguration.FUN_IE = 0; //Deshabilitacion de la entrada
+    port_selected.confirguration.FUN_WPU = 0; //Deshabilitacion del pullup
+    port_selected.confirguration.FUN_WPD = 0; //Deshabilitacion del pulldown
     return;
 }
 
@@ -92,4 +108,18 @@ bool GPIO_INPUT_READ(uint8_t port){
     return lecture;
 }
 
+/*! 
+* Funcion: GPIO_INTERRUPTION_SET
+* Pre-condiciones: Que el puerto seleccionado sea una entrada
+* Descripcion: Habilita la interrupcion de la entrada
+* Valores de entrada: Puerto, tipo de habilitacion, tipo de interrupcion
+* Valores de salida: Ninguno
+*/  
+void GPIO_INTERRUPTION_SET(uint8_t port, uint8_t ena_type, uint8_t int_type){
+    GPIO_PIN_GENERIC port_selected;
+    port_selected.reg = GPIO_PIN(port);
+    port_selected.campo.INT_ENA = ena_type;
+    port_selected.campo.INT_TYPE = int_type;
+    return;
+}
 /*************** FINAL DE LAS FUNCIONES ***************************************************************************/
