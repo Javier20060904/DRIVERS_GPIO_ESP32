@@ -28,8 +28,8 @@
 #define OUT 1
 #define OFF IN
 #define ON OUT
-#define PULLUP OFF;
-#define PULLDOWN ON;
+#define PULLUP OFF
+#define PULLDOWN ON
 
 
 /******************************************************************************
