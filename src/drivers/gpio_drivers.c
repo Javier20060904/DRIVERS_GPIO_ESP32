@@ -50,8 +50,23 @@ void GPIO_OUTPUT_SET(uint8_t port, bool value){
 * Valores de salida: Ninguno
 */  
 void GPIO_OUTPUT_ENABLE(uint8_t port){
+    GPIO_FUNC_OUT_SEL(port) -> REG |= 0x100;
     GPIO_ENABLE -> REG_IO   |= (1 << port) * !(port > IO31 && port <= IO39);
     GPIO_ENABLE_1 -> REG_IO |= (1 << (port - IO32)) * (port > IO31 && port <= IO39);
+    return;
+}
+
+/*! 
+* Funcion: GPIO_OUTPUT_DISABLE
+* Pre-condiciones: Ninguna
+* Descripcion: Deshabilita la salida del puerto seleccionado
+* Valores de entrada: Puerto
+* Valores de salida: Ninguno
+*/  
+void GPIO_OUTPUT_DISABLE(uint8_t port){
+    GPIO_FUNC_OUT_SEL(port) -> REG ^= 0x100;
+    GPIO_ENABLE -> REG_IO   ^= (1 << port) * !(port > IO31 && port <= IO39);
+    GPIO_ENABLE_1 -> REG_IO ^= (1 << (port - IO32)) * (port > IO31 && port <= IO39);
     return;
 }
 

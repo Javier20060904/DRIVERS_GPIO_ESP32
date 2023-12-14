@@ -108,7 +108,7 @@
 #define GPIO_IN_DIR             (GPIO_BASE_DIR + 0x0038)
 #define GPIO_IN_1_DIR           (GPIO_BASE_DIR + 0x003C)
 #define GPIO_PIN_DIR            (GPIO_BASE_DIR + 0x0084)
-
+#define GPIO_FUNC_OUT_SEL_DIR   (0x3FF44530)
 
 /**
  * Punteros a los registros
@@ -128,7 +128,8 @@
 /******************************************************************************
 * Macros
 *******************************************************************************/
-#define GPIO_PIN(X)         (GPIO_PIN_DIR + (4*X))
+#define GPIO_PIN(X)             (GPIO_PIN_DIR + (4*X))
+#define GPIO_FUNC_OUT_SEL(X)    ((GPIO_FUNC_OUT_SEL_GENERIC*)(GPIO_FUNC_OUT_SEL_DIR + (4*X)))
 
 
 /******************************************************************************
@@ -170,7 +171,7 @@ typedef struct
 } GPIO_GENERIC_I_1;
 
 /**
- * Declaracion generica
+ * Declaracion generica del GPIO_PIN
 */
 typedef union 
 {
@@ -187,6 +188,15 @@ typedef union
         uint32_t RESERVED4 :13;
     }campo;
 } GPIO_PIN_GENERIC;
+
+/**
+ * Declaracion generica del GPIO_FUNC_OUT
+*/
+typedef struct
+{
+    _IO uint32_t REG;
+}GPIO_FUNC_OUT_SEL_GENERIC;
+
 
 
 #endif
