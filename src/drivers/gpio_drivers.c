@@ -128,7 +128,7 @@ bool GPIO_INPUT_READ(uint8_t port){
 /*! 
 * Funcion: GPIO_INTERRUPTION_SET
 * Pre-condiciones: Que el puerto seleccionado sea una entrada
-* Descripcion: Habilita la interrupcion de la entrada
+* Descripcion: Habilita la interrupcion de la entrada (Sin terminar)
 * Valores de entrada: Puerto, tipo de habilitacion, tipo de interrupcion
 * Valores de salida: Ninguno
 */  
