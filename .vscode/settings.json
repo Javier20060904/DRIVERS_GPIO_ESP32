@@ -1,6 +1,0 @@
-{
-    "files.associations": {
-        "gpio_matrix.h": "c",
-        "gpio_drivers.h": "c"
-    }
-}
