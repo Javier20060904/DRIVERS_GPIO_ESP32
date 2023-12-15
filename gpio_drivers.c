@@ -20,7 +20,7 @@
 *******************************************************************************/
 
 /*! 
-* Funcion: GPIO_OUT_SET
+* Funcion: GPIO_OUTPUT_SET
 * Pre-condiciones: El puerto debe estar habilitado
 * Descripcion: Asigna un valor de salida (0 o 1) al puerto seleccionado 
 * Valores de entrada: Puerto, Valor de salida 
@@ -51,7 +51,7 @@ void GPIO_OUTPUT_SET(uint8_t port, bool value){
 */  
 void GPIO_OUTPUT_ENABLE(uint8_t port){
     IO_MUX port_selected;
-    port_selected.reg = (uint32_t *) ioMuxDirections[port]; //Seleccion del puerto
+    port_selected.reg = ioMuxDirections[port]; //Seleccion del puerto
     port_selected.confirguration.MCU_SEL = 0x02;
     GPIO_ENABLE -> REG_IO   = (1 << port) * !(port > IO31 && port <= IO39);
     GPIO_ENABLE_1 -> REG_IO = (1 << (port - IO32)) * (port > IO31 && port <= IO39);
@@ -66,7 +66,6 @@ void GPIO_OUTPUT_ENABLE(uint8_t port){
 * Valores de salida: Ninguno
 */  
 void GPIO_OUTPUT_DISABLE(uint8_t port){
-    GPIO_FUNC_OUT_SEL(port) -> REG ^= 0x100;
     GPIO_ENABLE -> REG_IO   ^= (1 << port) * !(port > IO31 && port <= IO39);
     GPIO_ENABLE_1 -> REG_IO ^= (1 << (port - IO32)) * (port > IO31 && port <= IO39);
     return;
