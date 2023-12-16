@@ -25,7 +25,7 @@
 * Descripcion: Asigna un valor de salida (0 o 1) al puerto seleccionado 
 * Valores de entrada: Puerto, Valor de salida 
 * Valores de salida: Ninguno
-*/  
+ */  
 void GPIO_OUTPUT_SET(uint8_t port, bool value){
     //Del puerto 34 al 39 no pueden ser salidas
     switch (value)
